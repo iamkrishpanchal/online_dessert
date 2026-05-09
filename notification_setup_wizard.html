@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notification Setup Wizard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .wizard {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 700px;
+            width: 100%;
+            overflow: hidden;
+        }
+        .wizard-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .wizard-header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        .wizard-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .progress-bar {
+            display: flex;
+            margin: 20px 0 0 0;
+            gap: 4px;
+        }
+        .progress-step {
+            flex: 1;
+            height: 4px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 2px;
+        }
+        .progress-step.active {
+            background: white;
+        }
+        .wizard-body {
+            padding: 40px;
+        }
+        .step {
+            display: none;
+        }
+        .step.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .step h2 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .step-content {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .step-content p {
+            margin: 10px 0;
+        }
+        .step-content ol, .step-content ul {
+            margin-left: 20px;
+            margin: 10px 0 10px 20px;
+        }
+        .step-content li {
+            margin: 6px 0;
+        }
+        .code-block {
+            background: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            margin: 10px 0;
+            word-break: break-all;
+            color: #333;
+        }
+        .success-box {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #155724;
+        }
+        .info-box {
+            background: #e7f3ff;
+            border: 1px solid #b3d9ff;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #0056b3;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #856404;
+        }
+        .wizard-footer {
+            padding: 20px 40px;
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            background: #f8f9fa;
+            border-top: 1px solid #eee;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-prev {
+            background: #e0e0e0;
+            color: #333;
+        }
+        .btn-prev:hover {
+            background: #d0d0d0;
+        }
+        .btn-next {
+            background: #667eea;
+            color: white;
+            margin-left: auto;
+        }
+        .btn-next:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(102, 126, 234, 0.4);
+        }
+        .btn-next:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .icon {
+            font-size: 24px;
+        }
+        .checklist {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 0;
+            color: #666;
+        }
+        .checklist-item.done {
+            color: #28a745;
+        }
+        .checklist-icon {
+            margin-right: 10px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .external-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .external-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="wizard">
+        <div class="wizard-header">
+            <h1>📢 Notification Setup Wizard</h1>
+            <p>Get notifications working in 5 minutes</p>
+            <div class="progress-bar">
+                <div class="progress-step active"></div>
+                <div class="progress-step"></div>
+                <div class="progress-step"></div>
+                <div class="progress-step"></div>
+            </div>
+        </div>
+        
+        <div class="wizard-body">
+            <!-- Step 1: Check System -->
+            <div class="step active">
+                <h2><span class="icon">✓</span> Step 1: Check System</h2>
+                <div class="step-content">
+                    <p>Let's verify your system is ready for notifications.</p>
+                    
+                    <div class="checklist">
+                        <div class="checklist-item done">
+                            <span class="checklist-icon">✓</span>
+                            <span>Database connection working</span>
+                        </div>
+                        <div class="checklist-item done">
+                            <span class="checklist-icon">✓</span>
+                            <span>Notification system installed</span>
+                        </div>
+                        <div class="checklist-item">
+                            <span class="checklist-icon">→</span>
+                            <span>Database columns being added in Step 2</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-box">
+                        <strong>💡 Info:</strong> The system is checking if your database has the required notification columns. Click Next to add them.
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 2: Run Migration -->
+            <div class="step">
+                <h2><span class="icon">🔧</span> Step 2: Add Database Columns</h2>
+                <div class="step-content">
+                    <p>We need to add two columns to your notifications table to support auto-dismiss and manual dismissal.</p>
+                    
+                    <p><strong>Columns to be added:</strong></p>
+                    <ul>
+                        <li><code>is_dismissed</code> - Tracks if user manually dismissed</li>
+                        <li><code>auto_dismiss_at</code> - When notification auto-expires</li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        ⚠️ <strong>Important:</strong> Click the button below to run the migration. This is safe and won't delete any data.
+                    </div>
+                    
+                    <p style="text-align: center; margin-top: 20px;">
+                        <a href="migrate_notification_dismissal.php" target="_blank" class="external-link" style="font-size: 16px; padding: 12px 24px; border: 2px solid #667eea; border-radius: 8px; display: inline-block;">
+                            🔧 Run Migration Now
+                        </a>
+                    </p>
+                    
+                    <p style="text-align: center; margin-top: 15px; font-size: 12px; color: #999;">
+                        After running migration, come back and click Next
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Step 3: Place Order -->
+            <div class="step">
+                <h2><span class="icon">🛒</span> Step 3: Place a Test Order</h2>
+                <div class="step-content">
+                    <p>Let's create a test order to generate a notification.</p>
+                    
+                    <ol>
+                        <li>Go to the shop and browse products</li>
+                        <li>Add some items to your cart</li>
+                        <li>Click "Checkout"</li>
+                        <li>Fill in delivery details</li>
+                        <li>Choose "Cash on Delivery" (COD) for fastest testing</li>
+                        <li>Complete the order</li>
+                    </ol>
+                    
+                    <div class="success-box">
+                        ✓ The order will be created and ready for testing
+                    </div>
+                    
+                    <div class="info-box">
+                        <strong>💡 Tip:</strong> Remember your order number - you'll see it in the notification
+                    </div>
+                    
+                    <p style="text-align: center; margin-top: 20px;">
+                        <a href="user/index.php" target="_blank" class="external-link" style="font-size: 16px; padding: 12px 24px; border: 2px solid #667eea; border-radius: 8px; display: inline-block;">
+                            🛍️ Go to Shop
+                        </a>
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Step 4: Complete Order -->
+            <div class="step">
+                <h2><span class="icon">✅</span> Step 4: Complete Your Order</h2>
+                <div class="step-content">
+                    <p>Now update your order status to trigger a notification.</p>
+                    
+                    <h3 style="margin-top: 15px; color: #333;">Option A: As an Admin</h3>
+                    <ol>
+                        <li>Go to Admin Dashboard</li>
+                        <li>Find "Orders" section</li>
+                        <li>Find your test order</li>
+                        <li>Click "Completed" button</li>
+                    </ol>
+                    
+                    <h3 style="margin-top: 15px; color: #333;">Option B: As a User (Cancel Order)</h3>
+                    <ol>
+                        <li>Go to "My Orders"</li>
+                        <li>Find your test order</li>
+                        <li>Click "Cancel Order" button</li>
+                    </ol>
+                    
+                    <h3 style="margin-top: 15px; color: #333;">Option C: As a Vendor</h3>
+                    <ol>
+                        <li>Go to Vendor Dashboard</li>
+                        <li>Find your test order</li>
+                        <li>Update status to "Completed"</li>
+                    </ol>
+                    
+                    <div class="success-box">
+                        ✓ After updating, check the notification bell icon at the top right
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Step 5: Verify -->
+            <div class="step">
+                <h2><span class="icon">🎉</span> Step 5: Verify & Test</h2>
+                <div class="step-content">
+                    <p>Your notifications should now be working!</p>
+                    
+                    <div class="success-box">
+                        <strong>What to expect:</strong>
+                        <ul style="margin: 10px 0 0 20px;">
+                            <li>Notification appears in the bell icon (top right)</li>
+                            <li>Green border for completed orders</li>
+                            <li>Red border for cancelled orders</li>
+                            <li>Click ✕ button to dismiss immediately</li>
+                            <li>Auto-disappears after 5 minutes</li>
+                        </ul>
+                    </div>
+                    
+                    <h3 style="margin-top: 15px; color: #333;">Test Features:</h3>
+                    <div class="checklist">
+                        <div class="checklist-item">
+                            <span class="checklist-icon">1</span>
+                            <span>Click the notification to mark as read</span>
+                        </div>
+                        <div class="checklist-item">
+                            <span class="checklist-icon">2</span>
+                            <span>Click the ✕ button to manually dismiss</span>
+                        </div>
+                        <div class="checklist-item">
+                            <span class="checklist-icon">3</span>
+                            <span>Place another order and try again</span>
+                        </div>
+                        <div class="checklist-item">
+                            <span class="checklist-icon">4</span>
+                            <span>Check after 5 minutes - should auto-disappear</span>
+                        </div>
+                    </div>
+                    
+                    <div class="info-box">
+                        <strong>📖 Need help?</strong> Visit the <a href="test_api.php" class="external-link">Test API page</a> to verify everything is working correctly.
+                    </div>
+                    
+                    <p style="text-align: center; margin-top: 20px;">
+                        <a href="user/index.php" class="external-link" style="font-size: 16px; padding: 12px 24px; border: 2px solid #667eea; border-radius: 8px; display: inline-block;">
+                            ← Back to Shop
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="wizard-footer">
+            <button class="btn btn-prev" onclick="previousStep()" id="prevBtn">← Previous</button>
+            <button class="btn btn-next" onclick="nextStep()" id="nextBtn">Next →</button>
+        </div>
+    </div>
+    
+    <script>
+        let currentStep = 0;
+        const totalSteps = 5;
+        
+        function showStep(n) {
+            const steps = document.querySelectorAll('.step');
+            const progressSteps = document.querySelectorAll('.progress-step');
+            
+            if (n >= totalSteps) {
+                currentStep = totalSteps - 1;
+            } else if (n < 0) {
+                currentStep = 0;
+            } else {
+                currentStep = n;
+            }
+            
+            steps.forEach(step => step.classList.remove('active'));
+            progressSteps.forEach(step => step.classList.remove('active'));
+            
+            steps[currentStep].classList.add('active');
+            for (let i = 0; i <= currentStep; i++) {
+                progressSteps[i].classList.add('active');
+            }
+            
+            document.getElementById('prevBtn').style.display = currentStep === 0 ? 'none' : 'block';
+            document.getElementById('nextBtn').textContent = currentStep === totalSteps - 1 ? 'Finish 🎉' : 'Next →';
+        }
+        
+        function nextStep() {
+            if (currentStep < totalSteps - 1) {
+                showStep(currentStep + 1);
+            } else {
+                window.location.href = 'user/index.php';
+            }
+        }
+        
+        function previousStep() {
+            showStep(currentStep - 1);
+        }
+        
+        // Initialize
+        showStep(0);
+    </script>
+</body>
+</html>

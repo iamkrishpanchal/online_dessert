@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="en" class="light">
+<!-- BEGIN: Head -->
+
+<head>
+    <title>Add Category</title>
+    <!-- BEGIN: CSS Assets-->
+    <link rel="stylesheet" href="dist/css/app.css" />
+    <!-- END: CSS Assets-->
+</head>
+<!-- END: Head -->
+
+<body class="py-5 md:py-0 bg-black/[0.15] dark:bg-transparent">
+    <div class="flex mt-[4.7rem] md:mt-0 overflow-hidden">
+        <!-- BEGIN: Side Menu -->
+        <!-- BEGIN: Side Menu -->
+<nav class="side-nav" style="background: linear-gradient(120deg, #76c076ff 0%, #c49d86ff 25%, #e0add4ff 50%, #979bdeff 75%, #dbe094ff 100%);">
+    <a href="" class="intro-x flex items-center pl-5 pt-4 mt-3">
+        <img alt="Midone - HTML Admin Template" class="w-8 xl:w-12" src="src/cake2.png">
+        <span class="hidden xl:block text-white text-lg ml-3">  Dessert Magic </span>
+    </a>
+    <div class="side-nav__devider my-6"></div>
+    <ul>
+       <li>
+            <a href="about.php" class="side-menu">
+                    <div class="side-menu__icon"> <i data-lucide="brush"></i> </div>
+                    <div class="side-menu__title"> Dashboard</div>
+                </a>
+            </li>
+        </li> 
+
+        <li>
+            <a href="addCategory.php" class="side-menu">
+                <div class="side-menu__icon"> <i data-lucide="box"></i> </div>
+                <div class="side-menu__title">
+                    Category 
+                    <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                </div>
+            </a>
+            <ul class="">
+                <li>
+                    <a href="viewCategory.php" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="eye"></i> </div>
+                        <div class="side-menu__title"> List</div>
+                    </a>
+                </li>     
+            </ul>
+        </li>
+
+
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-lucide="palette"></i> </div>
+                <div class="side-menu__title">
+                    Vendor
+                    <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                </div>
+            </a>
+            <ul class="">
+
+                <li>
+                    <a href="viewProduct.php" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="eye"></i> </div>
+                        <div class="side-menu__title">
+                            Vendor Details</div>
+                    </a>
+                    
+                    <a href="addProduct.php" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="plus-circle"></i> </div>
+                        <div class="side-menu__title">
+                            Active Vendor Details</div>
+                    </a>
+                     <a href="addProduct.php" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="plus-circle"></i> </div>
+                        <div class="side-menu__title">
+                            Deactive Vendor Details</div>
+                    </a>
+            </ul>
+        </li>
+    
+
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-lucide="palette"></i> </div>
+                <div class="side-menu__title">
+                    Customer
+                    <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                </div>
+            </a>
+            <ul class="">
+
+                <li>
+                    <a href="viewOffer.php" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="eye"></i> </div>
+                        <div class="side-menu__title">
+                            Customer details</div>
+                    </a>
+                    
+                 
+            </ul>
+        </li>
+
+
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-lucide="palette"></i> </div>
+                <div class="side-menu__title">
+                    Rider
+                    <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                </div>
+            </a>
+            <ul class="">
+
+                <li>
+                    <a href="viewProduct.php" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="eye"></i> </div>
+                        <div class="side-menu__title">
+                            Rider Details</div>
+                    </a>
+                    
+                    <a href="addProduct.php" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="plus-circle"></i> </div>
+                        <div class="side-menu__title">
+                            Active Rider Details</div>
+                    </a>
+                     <a href="addProduct.php" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="plus-circle"></i> </div>
+                        <div class="side-menu__title">
+                            Deactive Rider Details</div>
+                    </a>
+            </ul>
+        </li>
+
+
+            <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-lucide="palette"></i> </div>
+                <div class="side-menu__title">
+                    Orders
+                    <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                </div>
+            </a>
+            <ul class="">
+
+                <li>
+                    <a href="viewProduct.php" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="eye"></i> </div>
+                        <div class="side-menu__title">
+                            Confirm Order</div>
+                    </a>
+                    
+                    <a href="addProduct.php" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="plus-circle"></i> </div>
+                        <div class="side-menu__title">
+                            Pending Order</div>
+                    </a>
+                     <a href="addProduct.php" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="plus-circle"></i> </div>
+                        <div class="side-menu__title">
+                            Cancel Order</div>
+                    </a>
+                                         <a href="addProduct.php" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="plus-circle"></i> </div>
+                        <div class="side-menu__title">
+                            Dispatched Order</div>
+                    </a>
+                    </a>
+                                         <a href="addProduct.php" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="plus-circle"></i> </div>
+                        <div class="side-menu__title">
+                            Rejected Order</div>
+                    </a>
+            </ul>
+        </li>
+
+        <li>
+            <a href="javascript:;" class="side-menu">
+                <div class="side-menu__icon"> <i data-lucide="palette"></i> </div>
+                <div class="side-menu__title">
+                    Payment Details</Details>
+                    <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                </div>
+            </a>
+            <ul class="">
+
+                <li>
+                    <a href="viewProduct.php" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="eye"></i> </div>
+                        <div class="side-menu__title">
+                            Cash </div>
+                    </a>
+                    
+                    <a href="addProduct.php" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="plus-circle"></i> </div>
+                        <div class="side-menu__title">
+                            Online</div>
+                    </a>
+                    
+            </ul>
+        </li>
+    
+
+
+        <li>
+                    <a href="feedback.php" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="wallet"></i> </div>
+                        <div class="side-menu__title">
+                           Feedback
+                            <div class="side-menu__sub-icon "> <i data-lucide="rupee-sign"></i> </div>
+                        </div>
+                    </a>
+                    
+        </li>
+                <li>
+                    <a href="logout.php" class="side-menu">
+                        <div class="side-menu__icon"> <i data-lucide="wallet"></i> </div>
+                        <div class="side-menu__title">
+                           logout
+                            <div class="side-menu__sub-icon "> <i data-lucide="rupee-sign"></i> </div>
+                        </div>
+                    </a>
+                    
+        </li>
+             
+                
+        </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+<!-- END: Side Menu -->        <!-- END: Side Menu -->
+        <!-- BEGIN: Content -->
+        <div class="content">
+            <!-- BEGIN: Top Bar -->
+            <div class="top-bar -mx-4 px-4 md:mx-0 md:px-0">
+                    <!-- BEGIN: Breadcrumb -->
+                    <nav aria-label="breadcrumb" class="-intro-x mr-auto hidden sm:flex">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Application</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                        </ol>
+                    </nav>
+                    <!-- END: Breadcrumb -->
+                    <!-- BEGIN: Search -->
+                    
+                    <!-- END: Search -->
+                    <!-- BEGIN: Notifications -->
+                    <!-- END: Notifications -->
+                    <!-- BEGIN: Account Menu -->
+                    <div class="intro-x dropdown w-8 h-8">
+                        <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in" role="button" aria-expanded="false" data-tw-toggle="dropdown">
+                            <img alt="Midone - HTML Admin Template" src="dist/images/profile-5.jpg">
+                        </div>
+                        <div class="dropdown-menu w-56">
+                            <ul class="dropdown-content bg-primary text-white">
+                                <li class="p-2">
+                                    <div class="font-medium">Keanu Reeves</div>
+                                    <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">Backend Engineer</div>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider border-white/[0.08]">
+                                </li>
+                                <li>
+                                    <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="user" class="w-4 h-4 mr-2"></i> Profile </a>
+                                </li>
+                                <li>
+                                    <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="edit" class="w-4 h-4 mr-2"></i> Add Account </a>
+                                </li>
+                                <li>
+                                    <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="lock" class="w-4 h-4 mr-2"></i> Reset Password </a>
+                                </li>
+                                <li>
+                                    <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="help-circle" class="w-4 h-4 mr-2"></i> Help </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider border-white/[0.08]">
+                                </li>
+                                <li>
+                                    <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- END: Account Menu -->
+                </div>
+                            <!-- END: Top Bar -->
+            <div class="intro-y flex items-center mt-8">
+                <h2 class="text-lg font-medium mr-auto">
+                    Add New Category
+                </h2>
+            </div>
+            <div class="grid grid-cols-12 gap-6 mt-5">
+                <div class="intro-y col-span-12 lg:col-span-8">
+                    <!-- BEGIN: Input Form -->
+                    <div class="intro-y box">
+                        <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                            <h3 class="text-base font-medium">Category Details</h3>
+                        </div>
+
+                        <form method="POST" enctype="multipart/form-data">
+                            <div class="p-5">
+                                <div class="preview">
+                                    <!-- Category ID (Auto Increment)
+                                     <div class="mb-4">
+                                        <label class="form-label">Category ID</label>
+                                        <input type="text" class="form-control" value="Auto Generated" disabled placeholder="Auto generated on insert">
+                                        <small class="text-gray-500">This will be automatically generated</small>
+                                    </div> --> 
+
+                                    <!-- Category Name -->
+                                    <div class="mb-4">
+                                        <label for="category_name" class="form-label">Category Name *</label>
+                                        <input id="category_name" type="text" class="form-control" placeholder="Enter category name (e.g., Cakes, Pastries, Cookies)" name="category_name" required>
+                                        <!-- <small class="text-gray-500">Maximum 25 characters</small> -->
+                                    </div>
+
+                                    <!-- Category Status -->
+                                    <div class="mb-4">
+                                        <label for="category_status" class="form-label">Category Status *</label>
+                                        <select id="category_status" class="form-control" name="category_status" required>
+                                            <option value="">-- Select Status --</option>
+                                            <option value="1">Available</option>
+                                            <option value="0">Unavailable</option>
+                                        </select>
+                                        <small class="text-gray-500">Choose whether this category is available or unavailable</small>
+                                    </div>
+
+                                    <!-- Buttons -->
+                                    <div class="mt-6">
+                                        <button type="submit" class="btn btn-primary w-28 mr-2 mb-2" name="btnSubmit" value="Submit">
+                                            <i data-lucide="check" class="w-4 h-4 mr-2"></i> Add Category
+                                        </button>
+                                        <a href="viewCategory.php" class="btn btn-secondary w-28 mr-2 mb-2">
+                                            <i data-lucide="x" class="w-4 h-4 mr-2"></i> Cancel
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- END: Input Form -->
+                </div>
+
+                <!-- Information Panel -->
+                <!-- <div class="intro-y col-span-12 lg:col-span-4">
+                    <div class="intro-y box p-5">
+                        <h4 class="font-medium mb-3">Information</h4>
+                        <ul class="text-sm space-y-2">
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-4 h-4 mr-2 mt-0.5 text-green-500"></i>
+                                <span>Category ID is auto-generated</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-4 h-4 mr-2 mt-0.5 text-green-500"></i>
+                                <span>All fields are required</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-4 h-4 mr-2 mt-0.5 text-green-500"></i>
+                                <span>Available categories will be visible to customers</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i data-lucide="check-circle" class="w-4 h-4 mr-2 mt-0.5 text-green-500"></i>
+                                <span>You can edit categories after creation</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <!-- END: Content -->
+    </div>
+
+    <!-- BEGIN: JS Assets-->
+    <script src="dist/js/app.js"></script>
+    <!-- END: JS Assets-->
+</body>
+
+</html>
